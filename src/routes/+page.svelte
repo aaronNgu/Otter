@@ -10,7 +10,7 @@
 </svelte:head>
 
 <section>
-	<ul class="flex flex-col w-96">
+	<ul class="flex flex-col w-96 px-5">
 		{#each data.todos as todo}
 			<ListItem item={todo} />
 		{/each}
