@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import ItemInput from './ItemInput.svelte';
+	import Icon from '@iconify/svelte';
 	/**
 	 * @type {{ name: string; id: number }}
 	 */
@@ -24,16 +25,7 @@
 	<form method="POST" action="?/delete_todo" use:enhance class="flex ml-2">
 		<input name="id" value={item.id} type="hidden" />
 		<button>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke-width="1.5"
-				stroke="currentColor"
-				class="w-6 h-6"
-			>
-				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-			</svg>
+			<Icon icon="material-symbols:delete-outline" style="font-size: 32px" />
 		</button>
 	</form>
 </li>
