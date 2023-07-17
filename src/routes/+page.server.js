@@ -20,10 +20,15 @@ export const actions = {
         let data = await request.formData();
         let name = data.get('name');
         if (!name) { throw new Error('name cannot be empty') };
-        faketodos.push({ id: nextId, name: name.toString() });
+        let newItemId = nextId;
+        faketodos.push({ id: newItemId, name: name.toString() });
         nextId += 1;
         return {
-            successful: true
+            successful: true,
+            new_todo: {
+                id: newItemId,
+                name: name.toString()
+            }
         }
     },
     delete_todo: async ({ request }) => {
