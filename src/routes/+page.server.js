@@ -37,7 +37,8 @@ export const actions = {
         if (!id) { throw new Error('id cannot be empty') };
         faketodos = faketodos.filter((todo) => todo.id != Number(id ?? 0));
         return {
-            successful: true
+            successful: true,
+            id
         }
     },
     update_todo: async ({ request }) => {

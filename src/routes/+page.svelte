@@ -15,6 +15,13 @@
 	function add_todo(event) {
 		todos = [...todos, event.detail.new_todo];
 	}
+
+	/**
+	 * @param {{ detail: { id: number  }; }} event
+	 */
+	function delete_todo(event) {
+		todos = todos.filter((todo) => todo.id != event.detail.id);
+	}
 </script>
 
 <svelte:head>
@@ -25,7 +32,7 @@
 <section>
 	<ul class="flex flex-col w-96 px-5">
 		{#each todos as todo}
-			<ListItem item={todo} />
+			<ListItem item={todo} on:delete_todo={delete_todo} />
 		{/each}
 		{#if addLoadingState}
 			<p class="px-3">Loading...</p>
