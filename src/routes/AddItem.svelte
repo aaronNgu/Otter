@@ -2,20 +2,9 @@
 	import { enhance } from '$app/forms';
 	import Icon from '@iconify/svelte';
 	import { createEventDispatcher } from 'svelte';
-
+	const dispatch = createEventDispatcher();
 	let rotation = 0;
 	export let loading = false;
-
-	const dispatch = createEventDispatcher();
-
-	/**
-	 * @param {{ type: "success"; status: number; data?: Record<string, any> | undefined; }} result
-	 */
-	function sayHello(result) {
-		dispatch('add_todo', {
-			new_todo: result.data?.new_todo
-		});
-	}
 </script>
 
 <form
@@ -27,7 +16,9 @@
 			loading = false;
 			rotation += 90;
 			if (result.type == 'success') {
-				sayHello(result);
+				dispatch('add_todo', {
+					new_todo: result.data?.new_todo
+				});
 			}
 			update();
 		};
