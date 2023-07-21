@@ -11,7 +11,7 @@
 	export let loading = false;
 </script>
 
-<li class="flex justify-center m-3">
+<li class="flex justify-center m-2">
 	<form
 		method="POST"
 		action="?/update_todo"

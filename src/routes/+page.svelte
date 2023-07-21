@@ -37,9 +37,7 @@
 		{#if addLoadingState}
 			<p class="px-3">Loading...</p>
 		{/if}
-		<li class="flex justify-center m-3">
-			<AddItem bind:loading={addLoadingState} on:add_todo={add_todo} />
-		</li>
+		<AddItem bind:loading={addLoadingState} on:add_todo={add_todo} />
 	</ul>
 </section>
 
