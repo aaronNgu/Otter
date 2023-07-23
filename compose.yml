@@ -1,0 +1,12 @@
+
+services:
+  otter-db:
+    image: postgres
+    container_name: otter-db-container
+    user: postgres
+    environment:
+      POSTGRES_PASSWORD: otter
+      POSTGRES_USER: otter
+      POSTGRES_DB: otter
+    ports:
+      - "5432:5432"
