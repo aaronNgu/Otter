@@ -1,14 +1,9 @@
-import { todos } from "./data";
+import prisma from "$lib/prisma";
 
-let faketodos = todos;
-let nextId = 4;
-
-export function load() {
+export const load = async () => {
+    const todos = await prisma.todoItem.findMany();
     return {
-        todos: faketodos.map((todo) => ({
-            id: todo.id,
-            name: todo.name,
-        }))
+        todos,
     }
 }
 
@@ -20,22 +15,17 @@ export const actions = {
         let data = await request.formData();
         let name = data.get('name');
         if (!name) { throw new Error('name cannot be empty') };
-        let newItemId = nextId;
-        faketodos.push({ id: newItemId, name: name.toString() });
-        nextId += 1;
+        const new_todo = await prisma.todoItem.create({ data: { name: name.toString() } });
         return {
             successful: true,
-            new_todo: {
-                id: newItemId,
-                name: name.toString()
-            }
+            new_todo,
         }
     },
     delete_todo: async ({ request }) => {
         let data = await request.formData();
         let id = data.get('id');
         if (!id) { throw new Error('id cannot be empty') };
-        faketodos = faketodos.filter((todo) => todo.id != Number(id ?? 0));
+        await prisma.todoItem.delete({ where: { id: Number(id ?? 0) } });
         return {
             successful: true,
             id
@@ -46,9 +36,7 @@ export const actions = {
         let id = data.get('id');
         let name = data.get('name');
         if (!id || !name) { throw new Error('name cannot be empty') };
-        let to_update = faketodos.find((ele) => ele.id == Number(id ?? 0));
-        if (!to_update) throw new Error('item not found');
-        to_update.name = name?.toString();
+        await prisma.todoItem.update({ where: { id: Number(id ?? 0) }, data: { name: name.toString() } });
         return {
             successful: true
         }
