@@ -7,6 +7,7 @@ export default {
       'sec': '#0A6EBD',
       'sec_2': '#5A96E3',
       'sec_3': '#A1C2F1',
+      'error': '#9B1C1C',
     },
   },
   plugins: [],
