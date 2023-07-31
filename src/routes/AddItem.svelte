@@ -13,6 +13,13 @@
 		action="?/add_todo"
 		use:enhance={() => {
 			loading = true;
+			const rotateCross = async () => {
+				while (loading) {
+					rotation += 180;
+					await new Promise((resolve) => setTimeout(resolve, 1 * 250));
+				}
+			};
+			rotateCross();
 			return async ({ result, update }) => {
 				loading = false;
 				rotation += 90;
