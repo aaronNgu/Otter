@@ -1,6 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import ItemInput from './ItemInput.svelte';
+	import moment from 'moment';
 	import Icon from '@iconify/svelte';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
@@ -45,6 +46,7 @@
 			}}
 			class="flex ml-2"
 		>
+			<input name="deletedAt" value={moment.utc().toISOString()} type="hidden" />
 			<input name="id" value={item.id} type="hidden" />
 			{#if loading}
 				<p class="px-2">...</p>
