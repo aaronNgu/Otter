@@ -5,9 +5,11 @@
 	const dispatch = createEventDispatcher();
 	let rotation = 0;
 	export let loading = false;
+	/** @type {import('./$types').ActionData} */
+	export let form;
 </script>
 
-<li class="flex justify-center m-2">
+<li class="flex flex-col justify-center m-2">
 	<form
 		method="post"
 		action="?/add_todo"
@@ -49,4 +51,9 @@
 			/>
 		</button>
 	</form>
+	{#if !!form?.error_msg && form?.id == 0}
+		<p class="text-error">
+			{form?.error_msg || ''}
+		</p>
+	{/if}
 </li>

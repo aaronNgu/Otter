@@ -15,7 +15,7 @@ export const actions = {
     add_todo: async ({ request }) => {
         let data = await request.formData();
         let name = data.get('name');
-        if (!name) { return fail(400, { error_msg: 'name cannot be empty', }) };
+        if (!name) { return fail(400, { error_msg: 'name cannot be empty', id: 0 }) };
         const new_todo = await prisma.todoItem.create({ data: { name: name.toString() } });
         return {
             successful: true,

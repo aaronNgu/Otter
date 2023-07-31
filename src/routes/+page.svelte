@@ -39,7 +39,7 @@
 		{#if addLoadingState}
 			<p class="px-3">Loading...</p>
 		{/if}
-		<AddItem bind:loading={addLoadingState} on:add_todo={add_todo} />
+		<AddItem bind:loading={addLoadingState} on:add_todo={add_todo} {form} />
 	</ul>
 </section>
 
